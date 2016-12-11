@@ -12,6 +12,12 @@ Install Processing 3 first. Download here https://processing.org/download/?proce
 Open Mandelbrot2.pde in the Processing IDE.
 
 
+## Usage
+
+- To zoom, just select an area with the mouse.
+- To reset the display, press ESC
+
+
 ## Caveats
 
 - Requires a square 'canvas' at present. Need to add height scaling for 'mapped' values
