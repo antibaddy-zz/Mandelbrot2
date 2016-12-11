@@ -1,4 +1,4 @@
-[[https://github.com/antibaddy/Mandelbrot2/blob/master/screenshot.png]]
+![alt tag](https://github.com/antibaddy/Mandelbrot2/blob/master/screenshot.png)
 ## Synopsis
 
 Simple Mandelbrot Set generator for Processing 3.
