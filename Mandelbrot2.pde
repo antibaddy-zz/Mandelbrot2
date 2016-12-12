@@ -31,6 +31,7 @@ float INFINITY_BREACH = 16.0;
 float w, h;
 float xmin, ymin;
 float xmax, ymax;
+float start_scale;
 
 void settings() {
   println("WINDOW_RATIO: ", WINDOW_RATIO);
@@ -177,9 +178,10 @@ void mouseReleased() {
   xmax = mappedXmax;
   ymax = mappedYmax;
   
-  println("xmin:", xmin, "ymin", ymin);
-  println("xmax:", xmax, "ymax:", ymax);
- 
+  //println("xmin:", xmin, "ymin", ymin);
+  //println("xmax:", xmax, "ymax:", ymax);
+  
+  printZoom();
 }
 
 void keyPressed() {
@@ -206,6 +208,16 @@ void resetSet(float newW) {
   xmax = xmin + w;
   // y goes from ymin to ymax
   ymax = ymin + h;
+  
+  // Set up start_scale so that zoom can be calculated
+  // this is jsut the diagonal distance of the mapped 'box' that the set is drawn in
+  start_scale = dist(xmin, ymin, xmax, ymax);
+  
+  printZoom();
+}
+
+void printZoom() {
+  println("ZOOM: ", round(start_scale / dist(xmin, ymin, xmax, ymax)));
 }
 
 void drawSelection() {
