@@ -14,8 +14,7 @@ float WINDOW_RATIO = WIN_WIDTH / WIN_HEIGHT;
 // Set up colorMap array
 PVector[] colorMap = new PVector[16];
 
-// Set up values for selection rectangle
-int mX1, mY1, mX2, mY2;
+// Selection rectangle, used to zoom the set
 SelectionRectangle selectionRect;
 
 // Initial width to calculate set from
