@@ -5,17 +5,14 @@
  * Simple rendering of the Mandelbrot set.
  */
  
+// Control constants
+boolean DISPLAY_ZOOM = false; // Display the zoom level in the window as well as in the console
+
 // Set up window size
 int WIN_WIDTH  = 600;
 int WIN_HEIGHT = WIN_WIDTH;
-
 float WINDOW_RATIO = WIN_WIDTH / WIN_HEIGHT;
 
-// Set up colorMap array
-PVector[] colorMap = new PVector[16];
-
-// Selection rectangle, used to zoom the set
-SelectionRectangle selectionRect;
 
 // Initial width to calculate set from
 float SET_WIDTH = 5;
@@ -33,13 +30,23 @@ float xmin, ymin;
 float xmax, ymax;
 float start_scale;
 
+// Set up colorMap array
+PVector[] colorMap = new PVector[16];
+
+// Selection rectangle, used to zoom the set
+SelectionRectangle selectionRect;
+
+// Implementation of P3's settings function
+// Allows windows size to be set with variables
 void settings() {
-  println("WINDOW_RATIO: ", WINDOW_RATIO);
   size(WIN_WIDTH, WIN_HEIGHT);
 }
 
 void setup() {
-  background(255);
+  background(51);
+  
+  printWindowRatio();
+  
   setupColorMap();
   
   selectionRect = new SelectionRectangle();
@@ -103,6 +110,7 @@ void draw() {
   updatePixels();
   
   renderSelection();
+  printZoom();
 }
 
 void renderSelection() {
@@ -181,7 +189,7 @@ void mouseReleased() {
   //println("xmin:", xmin, "ymin", ymin);
   //println("xmax:", xmax, "ymax:", ymax);
   
-  printZoom();
+  println("ZOOM: " + round(start_scale / dist(xmin, ymin, xmax, ymax)) + "X");
 }
 
 void keyPressed() {
@@ -213,12 +221,20 @@ void resetSet(float newW) {
   // this is jsut the diagonal distance of the mapped 'box' that the set is drawn in
   start_scale = dist(xmin, ymin, xmax, ymax);
   
-  printZoom();
+  println("ZOOM: " + round(start_scale / dist(xmin, ymin, xmax, ymax)) + "X");
+  //printZoom();
 }
 
 void printZoom() {
-  println("ZOOM: ", round(start_scale / dist(xmin, ymin, xmax, ymax)));
+  if (DISPLAY_ZOOM) {
+    int zoom = round(start_scale / dist(xmin, ymin, xmax, ymax));
+    String zoomStr = "ZOOM: " + zoom + "X";
+    textSize(20);
+    fill(255);
+    text(zoomStr, 10, 30);
+  } 
 }
 
-void drawSelection() {
+void printWindowRatio() {
+  println("WINDOW_RATIO: ", WINDOW_RATIO);
 }
