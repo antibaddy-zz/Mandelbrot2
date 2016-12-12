@@ -24,7 +24,8 @@ Open Mandelbrot2.pde in the Processing IDE.
 
 - Requires a square 'canvas' at present. Need to add height scaling for 'mapped' values
 - Zoom feature will eventually hit the limit for the 32 bit float type
-- Zoom feature depends on square canvas at present
+- Zoom feature assumes a square canvas
+- The image is not cached and so recomputed each time the draw() function is executed.
 
 
 ## Contributors
